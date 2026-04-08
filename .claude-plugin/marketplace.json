@@ -1,7 +1,7 @@
 {
   "name": "cursor-plugin",
   "owner": {
-    "name": "kharytonbatkov"
+    "name": "rota2000"
   },
   "metadata": {
     "description": "Cursor CLI plugin for Claude Code — delegate tasks or get second opinions via cursor-agent.",
@@ -13,7 +13,7 @@
       "description": "Delegate autonomous coding tasks or get read-only reviews via the Cursor CLI (cursor-agent).",
       "version": "0.1.0",
       "author": {
-        "name": "kharytonbatkov"
+        "name": "rota2000"
       },
       "source": "./plugins/cursor"
     }
