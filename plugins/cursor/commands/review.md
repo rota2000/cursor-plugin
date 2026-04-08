@@ -13,7 +13,7 @@ $ARGUMENTS
 ## Rules
 
 - If `$ARGUMENTS` is empty, use `AskUserQuestion` exactly once to ask the user what cursor should review. Do not invent a review target.
-- The subagent runs cursor-agent with `--trust` foreground. It has shell access for read-only commands (git diff, etc.) but the prompt instructs it not to edit files.
+- The subagent runs cursor-agent with `--mode ask --trust` foreground. Ask mode is read-only by construction but allows shell commands for context gathering (git diff, etc.).
 - Do not paraphrase, summarize, or add commentary before or after the subagent's output.
 - After presenting the review, STOP. Do not auto-apply any suggested fixes. If the user wants changes made, they must explicitly ask.
 - Do not ask the subagent to inspect files, monitor progress, or do any follow-up work.

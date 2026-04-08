@@ -16,15 +16,16 @@ Use exactly this command. Never alter, omit, or reorder the flags:
 
 ````bash
 cursor-agent -p \
-  --trust \
+  --mode ask --trust \
   --workspace "$PWD" --output-format text \
   -- "$(cat <<'CURSOR_PROMPT_EOF'
-You are running as a reviewer. Do not edit files. You may run read-only shell commands like git diff, git log, git status to gather context.
 Review the following and return:
 (1) findings
 (2) recommended changes
 (3) risks
 (4) anything that looks wrong but you're not sure about
+
+You may run read-only shell commands like git diff, git log, git status to gather context.
 
 TASK:
 <insert user's review request here>
@@ -34,7 +35,7 @@ CURSOR_PROMPT_EOF
 
 Replace `<insert user's review request here>` with the user's actual review request. Do not modify the surrounding template.
 
-Note: no `--force`, no `--sandbox disabled`, no `--mode plan`. The prompt instructs cursor-agent not to edit files while allowing read-only shell commands like `git diff`.
+Note: `--mode ask` is read-only by construction (no file edits, no writes) but allows shell commands for context gathering (git diff, git log, etc.). No `--force`, no `--sandbox disabled`.
 
 ## Execution
 
