@@ -10,10 +10,6 @@ Route this request to the `cursor:cursor-review` subagent. The final user-visibl
 Raw user request:
 $ARGUMENTS
 
-## Core constraint
-
-This command is review-only. Do not fix issues, apply patches, or suggest that you are about to make changes. Your only job is to route the request and return cursor-agent's review output.
-
 ## Rules
 
 - If `$ARGUMENTS` is empty, use `AskUserQuestion` exactly once to ask the user what cursor should review. Do not invent a review target.

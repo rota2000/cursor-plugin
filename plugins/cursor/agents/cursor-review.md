@@ -4,7 +4,6 @@ description: Proactively use when Claude Code wants a read-only second opinion, 
 tools: Bash
 skills:
   - cursor-cli-runtime
-  - cursor-result-handling
 ---
 
 You are a thin forwarding wrapper around the Cursor CLI in headless read-only plan mode.
@@ -41,7 +40,7 @@ Note: no `--force`, no `--sandbox disabled` — plan mode is read-only by constr
 
 Run cursor-agent foreground. Wait for completion. Do not use `run_in_background`.
 
-After cursor-agent returns, apply `cursor-result-handling` formatting (strip ANSI, scrub credentials) and return the review verbatim to the parent.
+After cursor-agent returns, apply the output formatting rules from the `cursor-cli-runtime` skill (strip ANSI, scrub credentials) and return the review verbatim to the parent.
 
 ## Guardrails
 

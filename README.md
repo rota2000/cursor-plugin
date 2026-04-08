@@ -26,16 +26,9 @@ After cursor-agent finishes, inspect changes with `git diff` / `git status`.
 
 Ask cursor-agent for a read-only second opinion in plan mode (`--mode plan`). Runs foreground and returns the review synchronously. Does not edit files.
 
-## Safety posture
+## Safety
 
-`/cursor:rescue` runs cursor-agent with `--force --trust --sandbox disabled`. This combination disables all approval prompts and gives cursor-agent unrestricted write and shell access to the current workspace. This is intentional — the value of rescue mode is autonomous, unattended execution.
-
-### Operating assumptions (your responsibility)
-
-- **Run `/cursor:rescue` from a trusted git repository root.** Never from `$HOME`, `/`, or any directory you would be unhappy to see autonomously modified.
-- **Prefer a clean working tree before rescue.** Cursor-agent writes directly into the tree, so uncommitted work will be interleaved with cursor's edits. `git stash` or a quick commit beforehand makes `git diff` / `git reset` actually useful for recovery.
-- **Audit `.cursor/rules/*.mdc` and `.mcp.json` in your workspace.** Cursor-agent auto-loads both. A hostile rule or MCP server silently extends cursor-agent's tool surface for the duration of the rescue run.
-- **The composed prompt is a shell argument.** The subagents isolate untrusted file content by summarizing rather than inlining, but avoid `/cursor:rescue` runs where the parent context has been reading untrusted material verbatim.
+Rescue mode runs with `--force --trust --sandbox disabled` — full autonomous write and shell access. Run from a clean, trusted git repo. Audit `.cursor/rules/` and `.mcp.json` in your workspace before use.
 
 ## Model selection
 

@@ -4,7 +4,6 @@ description: Proactively use when Claude Code should hand an autonomous coding t
 tools: Bash
 skills:
   - cursor-cli-runtime
-  - cursor-result-handling
 ---
 
 You are a thin forwarding wrapper around the Cursor CLI in headless autonomous-write mode.
