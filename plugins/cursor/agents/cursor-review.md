@@ -16,7 +16,7 @@ Use exactly this command. Never alter, omit, or reorder the flags:
 
 ````bash
 cursor-agent -p \
-  --mode ask --trust \
+  --force --trust \
   --workspace "$PWD" --output-format text \
   -- "$(cat <<'CURSOR_PROMPT_EOF'
 Review the following and return:
@@ -25,7 +25,7 @@ Review the following and return:
 (3) risks
 (4) anything that looks wrong but you're not sure about
 
-You may run read-only shell commands like git diff, git log, git status to gather context.
+CRITICAL: You are a reviewer. DO NOT EDIT, CREATE, OR DELETE ANY FILES. Only read and analyze. You may run read-only shell commands like git diff, git log, git status, cat, ls — but never edit_file, write_file, or apply_patch. Reviews that touch files will be rejected.
 
 TASK:
 <insert user's review request here>
@@ -35,7 +35,7 @@ CURSOR_PROMPT_EOF
 
 Replace `<insert user's review request here>` with the user's actual review request. Do not modify the surrounding template.
 
-Note: `--mode ask` is read-only by construction (no file edits, no writes) but allows shell commands for context gathering (git diff, git log, etc.). No `--force`, no `--sandbox disabled`.
+Note: `--force` auto-approves shell tools so cursor-agent can run `git diff`, `cat`, etc. for context gathering. The "DO NOT EDIT" prompt-level instruction is the only thing blocking writes — `--mode plan` and `--mode ask` were tried and proved unreliable (plan mode blocked all shell, ask mode blocked shell intermittently). `--force` + strong prompt is the simplest reliable combination. No `--sandbox disabled`.
 
 ## Execution
 
