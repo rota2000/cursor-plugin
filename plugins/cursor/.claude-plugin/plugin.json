@@ -1,6 +1,6 @@
 {
   "name": "cursor",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Delegate autonomous coding tasks or get read-only reviews via the Cursor CLI (cursor-agent).",
   "author": {
     "name": "rota2000"
